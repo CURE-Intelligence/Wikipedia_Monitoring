@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+WIKIPEDIA_MONITORING.egg-info/
+notebooks/
+build/
+.DS_Store
+dist/
+*.egg-info/
+*.egg
+
+# Ignore editor configuration files
+.vscode/
+.idea/
