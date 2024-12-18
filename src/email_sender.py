@@ -51,11 +51,11 @@ def send_email(subject: str,
     # Connect to Server
     #server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
     server = smtplib.SMTP(credentials['SMTP_SERVER'], credentials['SMTP_PORT'])
-    #server.connect()
+    server.connect(credentials['SMTP_SERVER'], credentials['SMTP_PORT'])
         
     server.ehlo()    
     server.starttls()
-    
+    server.ehlo()
     # Login to the server and send the email
     server.login(credentials['SMTP_USERNAME'],
                  credentials['SMTP_PASSWORD'])
