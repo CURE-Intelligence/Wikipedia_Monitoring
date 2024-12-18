@@ -4,6 +4,7 @@ from pages import WIKI_PAGES
 from scraper import scrape_wikipedia, get_update_as_date
 from text_comparison import compare_texts_similarity
 from email_sender import send_email
+from config import load_env
 
 
 from datetime import date, datetime, timedelta
@@ -17,7 +18,7 @@ def get_last_checked_date(base_path: str)-> date:
     
     """Get the last check date from file or create new one."""
     today = date.today()
-    last_check_file = os.path.join(base_path, "Last_Check - Copy.txt")
+    last_check_file = os.path.join(base_path, "Last_Check.txt")
     
     # Check if the path of the file exists; if not then append the current date as the last check
     if not os.path.exists(last_check_file):
@@ -70,7 +71,7 @@ def check_wikipedia_changes(base_path: str) -> Dict[str, str]:
         changed_results[name] = changed
         
         # Log changes to file (For each file name will write if there are Changes detected or not)
-        with open(os.path.join(base_path, "Last_Check - Copy.txt"), "a", encoding='utf-8') as f:
+        with open(os.path.join(base_path, "Last_Check.txt"), "a", encoding='utf-8') as f:
             if changed:
                 f.write(f"\n\n{name}\nCHANGES DETECTED")
             else:
@@ -114,17 +115,25 @@ def main():
         "TO_TECH_EMAIL" : os.getenv("TO_TECH_EMAIL"),
         "TO_USER_EMAIL" : os.getenv("TO_USER_EMAIL")
     }
+    
+    # True if we want to run it locally, False if we want to run it via Jenkins
+    LOCAL_EXEC = True
+    
     # Separately define the base path for clarify
-    BASE_PATH = os.getenv('BASE_PATH')
+    PATH = load_env(LOCAL_EXEC)
+    
+    print(PATH)
     
     # Get the changed results
-    changed_results = check_wikipedia_changes(BASE_PATH)
+    changed_results = check_wikipedia_changes(PATH)
     
     # Prepare the email even in case there is not any change
     subject, body = prepare_notification(changed_results)
     
+    print(subject, body)
+    
     # Send the email
-    send_email(subject, body, credentials)
+    #send_email(subject, body, credentials)
     
     
     
