@@ -122,9 +122,9 @@ def main():
     # Separately define the base path for clarify
     PATH = load_env(LOCAL_EXEC)
     
-    #print(PATH)
+    print(PATH)
 
-    print(credentials['SMTP_PORT'])
+    #print(credentials['SMTP_PORT'])
     
     # Get the changed results
     #changed_results = check_wikipedia_changes(PATH)
