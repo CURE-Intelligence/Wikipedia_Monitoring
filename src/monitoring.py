@@ -117,12 +117,12 @@ def main():
     }
     
     # True if we want to run it locally, False if we want to run it via Jenkins
-    LOCAL_EXEC = True
+    LOCAL_EXEC = False
     
     # Separately define the base path for clarify
     PATH = load_env(LOCAL_EXEC)
     
-    print(PATH)
+    #print(PATH)
     
     # Get the changed results
     changed_results = check_wikipedia_changes(PATH)
@@ -130,10 +130,10 @@ def main():
     # Prepare the email even in case there is not any change
     subject, body = prepare_notification(changed_results)
     
-    print(subject, body)
+    #print(subject, body)
     
     # Send the email
-    #send_email(subject, body, credentials)
+    send_email(subject, body, credentials)
     
     
     
