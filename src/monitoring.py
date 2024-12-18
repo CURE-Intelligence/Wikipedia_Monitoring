@@ -117,7 +117,7 @@ def main():
     }
     
     # True if we want to run it locally, False if we want to run it via Jenkins
-    LOCAL_EXEC = True
+    LOCAL_EXEC = False
     
     # Separately define the base path for clarify
     PATH = load_env(LOCAL_EXEC)
