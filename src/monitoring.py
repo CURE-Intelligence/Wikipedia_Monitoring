@@ -103,6 +103,12 @@ def prepare_notification(changed_results: Dict[str, str]) -> Dict[str, str]:
 
 
 def main():
+
+     # True if we want to run it locally, False if we want to run it via Jenkins
+    LOCAL_EXEC = False
+    
+    # Separately define the base path for clarify
+    PATH = load_env(LOCAL_EXEC)
     
     # Define the credentials for connecting to the email server
     credentials = {
@@ -116,15 +122,7 @@ def main():
         "TO_USER_EMAIL" : os.getenv("TO_USER_EMAIL")
     }
     
-    # True if we want to run it locally, False if we want to run it via Jenkins
-    LOCAL_EXEC = False
-    
-    # Separately define the base path for clarify
-    PATH = load_env(LOCAL_EXEC)
-    
-    print(PATH)
-
-    #print(credentials['SMTP_PORT'])
+    print(credentials['SMTP_PORT'])
     
     # Get the changed results
     #changed_results = check_wikipedia_changes(PATH)
