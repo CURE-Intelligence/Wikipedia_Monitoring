@@ -123,17 +123,19 @@ def main():
     PATH = load_env(LOCAL_EXEC)
     
     #print(PATH)
+
+    print(credentials['SMTP_PORT'])
     
     # Get the changed results
-    changed_results = check_wikipedia_changes(PATH)
+    #changed_results = check_wikipedia_changes(PATH)
     
     # Prepare the email even in case there is not any change
-    subject, body = prepare_notification(changed_results)
+    #subject, body = prepare_notification(changed_results)
     
     #print(subject, body)
     
     # Send the email
-    send_email(subject, body, credentials)
+    #send_email(subject, body, credentials)
     
     
     
