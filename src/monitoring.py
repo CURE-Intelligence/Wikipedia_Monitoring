@@ -43,7 +43,7 @@ def process_page_changes(name: str, url: str, last_check: date, base_path: str) 
     content_changed = False
     
     # Condition is if there are changes at the last 5 days
-    if update_date >= (last_check - timedelta(days=5)):
+    if update_date >= last_check :
         page_file = os.path.join(base_path, f"{name}.txt")
         
         
